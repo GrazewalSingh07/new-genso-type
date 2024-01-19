@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  /* cursor: url('./assets/cursor.png'),auto; */
+  background-color: #2a2a2e;
+  /* background-color: #918f8f; */
+
+  color: white;
+  overflow: hidden;
+}
+
+body {
+   scrollbar-width: none;  
+   -ms-overflow-style: none;  
+ }
+ 
+ 
+ body::-webkit-scrollbar {
+   display: none;
+   overflow: hidden;
+ }
+ .sketchfab_container{
+scrollbar-width: 2px;
+ }
+ .sketchfab_container ::-webkit-scrollbar {
+  display: 2px;
+  overflow: scroll;
+}
+.canvas{
+  width: 80vw;
+}

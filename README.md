@@ -1,2 +1,0 @@
-# new-genso-type
- 
