@@ -48,9 +48,9 @@ const CanvasMain: React.FC = () => {
     let arr = Object.entries(droppedFile).map(([_key, value]) => {
       return value;
     });
-    // console.log({arr})
+   
      let data=await handleChange(arr) 
-     console.log(data)
+    
       handleChangeData(data);
      
     

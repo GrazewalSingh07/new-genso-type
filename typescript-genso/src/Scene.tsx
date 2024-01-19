@@ -20,7 +20,7 @@ import { MyContext } from "./context";
   const Scene = () => {
 const {models}=useContext<any>(MyContext)
     // const model = useSelector((state: RootState) => state.models.models)
-console.log(models)
+// console.log(models)
   return (
     <>
       <PerspectiveCamera position={[-4, 4, -5]} makeDefault />
@@ -29,7 +29,7 @@ console.log(models)
       {/* <Select multiple box onChange={setSelected}> */}
         <group>
           {models?.map((el:any) => {
-            console.log(el)
+            
             return <ModelPreview key={el.name} selected={el.selected} type={el.type} name={el.name} glb={el.file} />;
           })}
         </group>

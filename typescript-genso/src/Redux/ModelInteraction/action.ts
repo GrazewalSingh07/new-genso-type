@@ -22,7 +22,7 @@ const handleFileLoad = (file: File): Promise<{ name: string; file: THREE.Object3
 export const handleChange = async (glbFiles: File[]) => {
   try {
  
-console.log(glbFiles)
+// console.log(glbFiles)
     const promises = glbFiles?.map((file) => handleFileLoad(file));
     const loadedModels = await Promise.all(promises);
 // console.log(loadedModels)

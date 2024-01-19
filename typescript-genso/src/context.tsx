@@ -32,7 +32,7 @@ export const MyContextProvider: React.FC<MyContextProps> = ({ children }) => {
   const [models, setModels] = useState<Model[]>([]);
   const [copiedModel, setCopiedModel] = useState<Object3D<Object3DEventMap> | null>(null);
 
-  console.log({copiedModel})
+  // console.log({copiedModel})
 
   const handleUpdateData = (data: UpdateModel) => {
     switch (data.type) {
