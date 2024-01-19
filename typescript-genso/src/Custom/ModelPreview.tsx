@@ -9,8 +9,8 @@ import {
   
 } from '@react-three/drei'
 import * as THREE from 'three'
- 
-import { MyContext } from "../context";
+import { Intersection } from 'three';
+import { MyContext, MyContextValue } from "../context";
 import { generateUniqueId } from "../Redux/ModelInteraction/action";
 // import { useDispatch } from "react-redux";
  
@@ -21,7 +21,7 @@ import { generateUniqueId } from "../Redux/ModelInteraction/action";
 // import { MyContext } from "../../../MyContext";
  
 interface glbPreviewProps {
-  glb: any; // Update with the correct type
+  glb: THREE.Object3D<THREE.Object3DEventMap>; // Update with the correct type
   name: string;
   selected: boolean;
   type: string;
@@ -62,18 +62,18 @@ export const ModelPreview: React.FC<glbPreviewProps> = ({ glb, name,selected,typ
    
    let x=glb.clone()
    
-    console.log({name:name.split('_')[0]+"_"+generateUniqueId(),file:x})
+    // console.log({name:name.split('_')[0]+"_"+generateUniqueId(),file:x,type:type})
     setCopiedModel(x);
      
   };
   const handlePaste = async () => {
     if(copiedModel){
-      handleChangeData([{name:name.split('_')[0]+"_"+generateUniqueId(),file:copiedModel}])
+      handleChangeData([{name:name.split('_')[0]+"_"+generateUniqueId(),file:copiedModel,type:type}])
     }
    
   };
 
-  const handleKeyDown = (event: any) => {
+  const handleKeyDown = (event: KeyboardEvent) => {
    
     if (event.key === 'Delete') {
       
@@ -103,7 +103,7 @@ export const ModelPreview: React.FC<glbPreviewProps> = ({ glb, name,selected,typ
   return (
 
     <group
-    onClick={handleClick}>
+     onClick={handleClick}>
       <PivotControls
         
         visible={selected ==true}
@@ -133,7 +133,7 @@ export const ModelPreview: React.FC<glbPreviewProps> = ({ glb, name,selected,typ
           />
         
         {/* <skinnedMesh castShadow receiveShadow geometry={nodes.Mesh?.geometry} material={materials.MeshStandardMaterial} skeleton={nodes?.Mesh?.skeleton||null}> */}
-        {  (type =='default' &&glb  && selected)&& <Outlines color="yellow" />}
+        {  (type =='default' && glb  && selected)&& <Outlines color="yellow" />}
       {/* </skinnedMesh> */}
         
      
