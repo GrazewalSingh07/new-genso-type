@@ -9,8 +9,8 @@ import {
   
 } from '@react-three/drei'
 import * as THREE from 'three'
-import { Intersection } from 'three';
-import { MyContext, MyContextValue } from "../context";
+
+import { MyContext } from "../context";
 import { generateUniqueId } from "../Redux/ModelInteraction/action";
 // import { useDispatch } from "react-redux";
  
