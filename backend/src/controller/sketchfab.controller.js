@@ -1,50 +1,57 @@
 const express= require('express')
 const router =express.Router();
- 
-const sketchfabApiUrl = 'https://sketchfab.com/oauth2/token/';
-const clientId = 'bD02sfpDP8LLXkxW9foJ32HplNZOXKuWGgj0L99m';
-const clientSecret = '4qhif8NTPqUbdsZcHeOpZOfdrVxjAipex2GMo4Ow089WpsO8A2lqxWkdOszHOIf37jQc4rIVhcxp3FG5IhWr4lEp3BApa7zG1VP9pw8xVoMA8eYb4W7RgC2PXped2VfD';
- const sketchfabLogin=({email,password})=>{
-  
-const basicAuthHeader = `Basic ${btoa(`${clientId}:${clientSecret}`)}`;
-const formData = {
-  'grant_type': 'password',
-  'username': email,
-  'password': password
-};
- 
+const axios = require('axios');
+const exchangeCodeForToken = async (authorizationCode) => {
+  const clientId = 'AC8xndaenPXQcYmcC1yOVKSWVHI0NHpg3lSKQHx2';
+  const clientSecret = 'YAEQlvQsIpp023d0JpR3iXj6ANNQUG7uHrYSSHe8dXgCJ0cp0zXqEMoOCLciyNhwyGsnKW3kfBCOQPqsmVkWHd2WIYBxwdD8PouCWAOxFQABEYdv8iNFfMcxwYYfeMSa';
+  const redirectUri = 'http://localhost:5173/';
 
-fetch(sketchfabApiUrl, {
-  method: 'POST',
+  const url = 'https://sketchfab.com/oauth2/token/';
+
+  const requestBody =new FormData()
+  requestBody.append('grant_type', 'authorization_code');
+  requestBody.append('code', authorizationCode);
+  requestBody.append('client_id', clientId);
+  requestBody.append('client_secret', clientSecret);
+  requestBody.append('redirect_uri', redirectUri);
+axios.post(url, requestBody,{
   headers: {
-    'Authorization': basicAuthHeader,
-    'Content-Type': 'application/json',
-  },
-  body: formData,
+    'Content-Type': 'application/x-www-form-urlencoded',
+     
+  }}).then((response) => {
+  console.log(response.data);
+}).catch((error) =>{
+  console.log(error);
 })
-  .then(response => {
-      console.log(response);
-    // if (!response.ok) {
-    //   throw new Error(`Server Error: ${response.status} - ${response.statusText}`);
-    // }
-    // return response.json();
-  })
-  .then(data => {
-    console.log({data})
-    // const newToken = data.access_token;
-    // setToken(newToken);
-    // setError(null);
-  })
-  .catch(error => {
-    // Handle errors
-    
-  });
- }
+  // try {
+  //   const response = await fetch(url, {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/x-www-form-urlencoded',
+  //     },
+  //     body: JSON.stringify(requestBody),
+  //   }) 
+  //   // console.log(response);
+  //   // if (!response.ok) {
+  //   //   throw new Error(`HTTP error! Status: ${response.status}`);
+
+  //   // }
+
+  //   const data = await response.json();
+  //   console.log('Access Token:', data.access_token);
+  //   console.log('Token Type:', data.token_type);
+  //   console.log('Expires In:', data.expires_in);
+   
+
+  // } catch (error) {
+  //   console.error('Error exchanging code for token:', error.message);
+  // }
+};
 router.post('/', async(req, res)=>{
     try {
        
-     let x=  await sketchfabLogin(req.body)
-      return  res.status(200).send({message:x});
+      exchangeCodeForToken(req.body.code)
+      return  res.status(200).send({message:"djh"});
     } catch (error) {
         
     }

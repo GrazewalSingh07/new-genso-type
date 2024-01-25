@@ -36,6 +36,7 @@ export const SketchFabContextProvider: React.FC<SketchFabProps> = ({ children })
   
    const [sketchfab_data,setsketchfab_data]= useState<any>(null)
 const [loading,setLoading]= useState<boolean>(false)
+
   const [queryParams, setQueryParams] = useState<QueryParams>({
     q: 'bed',
     type: 'models',
