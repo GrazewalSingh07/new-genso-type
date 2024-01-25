@@ -32,7 +32,7 @@ const {models}= useContext<any>(MyContext);
          
         </div>
       </div>
-      <div className="max-w-[260px] absolute  w-full ">
+      <div className="w-[15%] absolute  ">
         <div className="rounded-none h-[220px] glass"></div>
         {models.length > 0 && (
           <div className="p-2 glass rounded-none">

@@ -10,7 +10,7 @@ export const  CustomGrid = () => {
     sectionSize: 5,
     sectionThickness: 1,
     sectionColor: '#3d3d43',
-    fadeDistance: 50,
+    fadeDistance: 500,
     fadeStrength: 1,
     followCamera: false,
     infiniteGrid: true

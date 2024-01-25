@@ -15,14 +15,15 @@ import { MdOutlineTextFields } from "react-icons/md";
 import { BsImages } from "react-icons/bs";
 import { BiCube } from "react-icons/bi"; // Example icon, you can use any React Icons
 import { GiHumanTarget } from "react-icons/gi";
- 
- 
+import { LuSunSnow } from "react-icons/lu";
+ import {FaLightbulb} from "react-icons/fa"
+ import { GiHeavyLightning } from "react-icons/gi";
  import { useContext } from "react";
 import { MyContext } from "../context";
 import * as THREE from 'three';
 
 export const AddObjectDropdown: React.FC = () => {
-    type ObjectTypes = "box" | "sphere" | "cylinder" | "cone" | "donut" | "text" | "image" | "human" | "Directional Light" | "Point Light";
+    type ObjectTypes = "box" | "sphere" | "cylinder" | "cone" | "donut" | "text" | "image" | "human" | "directionalLight" | "pointLight"|'spotLight';
     const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
     const [tooltipOpen, setTooltipOpen] = useState<boolean>(false);
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -33,8 +34,11 @@ export const AddObjectDropdown: React.FC = () => {
       box: new THREE.BoxGeometry(1, 1, 1),
       cylinder: new THREE.CylinderGeometry(1, 1, 1, 32),
       donut: new THREE.TorusGeometry(0.5, 0.2, 3, 20),
-      cone: new THREE.ConeGeometry(2.5, 5, 16),
-      sphere: new THREE.SphereGeometry(1, 32, 16),
+      cone: new THREE.ConeGeometry(1, 1, 10),
+      sphere: new THREE.SphereGeometry(1, 16, 8),
+      oointlight : new THREE.PointLight( 0xff0000, 1, 100 ),
+      directionalLight : new THREE.DirectionalLight( 0xffffff, 0.5 ),
+      spotLight : new THREE.SpotLight( 0xffffff )
       // ... Add more shapes as needed
     };
   
@@ -104,25 +108,17 @@ export const AddObjectDropdown: React.FC = () => {
         </MenuItem>
 
         <Divider />
-        {/* <MenuItem value="DirectionaL Light" onClick={handleObjectChange("dir_light")}>
-          <img
-            className="w-5"
-            src="https://res.cloudinary.com/des4i2xu7/image/upload/v1703074678/directional_light_chsdmt.png"
-            style={{ marginRight: "8px" }}
-          />{" "}
+        <MenuItem value="DirectionaL Light" onClick={handleObjectChange("directionalLight")}>
+        <LuSunSnow style={{ marginRight: "8px" }}  />
           Directional Light
         </MenuItem>
-        <MenuItem value="DirectionaL Light" onClick={handleObjectChange}>
-          <img
-            className="w-5"
-            src="https://res.cloudinary.com/des4i2xu7/image/upload/v1703074678/spotlight_fh1rse.png"
-            style={{ marginRight: "8px" }}
-          />{" "}
+        <MenuItem value="DirectionaL Light" onClick={handleObjectChange("spotLight")}>
+        <GiHeavyLightning style={{ marginRight: "8px" }}  />
           Spot Light
         </MenuItem>
-        <MenuItem value="Point Light" onClick={handleObjectChange}>
+        <MenuItem value="Point Light" onClick={handleObjectChange("pointLight")}>
           <FaLightbulb style={{ marginRight: "8px" }} /> Point Light
-        </MenuItem> */}
+        </MenuItem>
         {/* Add more MenuItem components for other 3D objects */}
       </Menu>
     </div>

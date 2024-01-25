@@ -17,7 +17,7 @@ body,
   overflow: hidden;
 }
 
-body {
+body,div {
    scrollbar-width: none;  
    -ms-overflow-style: none;  
  }
@@ -27,6 +27,10 @@ body {
    display: none;
    overflow: hidden;
  }
+ div::-webkit-scrollbar {
+  display: none;
+  overflow: hidden;
+}
  .sketchfab_container{
 scrollbar-width: 2px;
  }

@@ -20,7 +20,7 @@ import { MyContext } from "./context";
   const Scene = () => {
 const {models}=useContext<any>(MyContext)
     // const model = useSelector((state: RootState) => state.models.models)
-// console.log(models)
+console.log(models)
   return (
     <>
       <PerspectiveCamera position={[-4, 4, -5]} makeDefault />

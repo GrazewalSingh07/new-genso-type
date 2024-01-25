@@ -21,8 +21,8 @@ export interface MyContextValue {
   models: Model[];
   handleDeleteData: (data: Model[]) => void;
   handleUpdateData: (data: UpdateModel) =>void;
-  copiedModel: Object3D<Object3DEventMap>|null;
-  setCopiedModel: (data: Object3D<Object3DEventMap>) => void;
+  copiedModel: Object3D<Object3DEventMap>[]|null;
+  setCopiedModel: (data: Object3D<Object3DEventMap>[]) => void;
 }
 
 export const MyContext = createContext<MyContextValue | null>(null);
@@ -30,7 +30,7 @@ export const MyContext = createContext<MyContextValue | null>(null);
 export const MyContextProvider: React.FC<MyContextProps> = ({ children }) => {
   
   const [models, setModels] = useState<Model[]>([]);
-  const [copiedModel, setCopiedModel] = useState<Object3D<Object3DEventMap> | null>(null);
+  const [copiedModel, setCopiedModel] = useState<Object3D<Object3DEventMap>[]|null>(null);
 
   // console.log({copiedModel})
 
@@ -61,7 +61,7 @@ export const MyContextProvider: React.FC<MyContextProps> = ({ children }) => {
     setModels(data);
   };
   const handleChangeData = (data: Model[]) => {
-    // console.log(data)
+    console.log({data})
     setModels([...models, ...data]);
   };
 

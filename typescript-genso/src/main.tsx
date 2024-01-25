@@ -7,15 +7,23 @@ import { store } from "./Redux/store.ts";
 import { BrowserRouter } from "react-router-dom";
 import ErrorBoundary from "./Errorboundary.tsx";
 import { MyContextProvider } from "./context.tsx";
+import { AuthContextProvider } from "./context/AuthContext.tsx";
+import { SketchFabContextProvider } from "./context/SketchFabContext.tsx";
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
-    <MyContextProvider>
-      <Provider store={store}>
-      <ErrorBoundary>
-        <App />
-        </ErrorBoundary>
-      </Provider>
+      <MyContextProvider>
+        <SketchFabContextProvider>
+
+        
+        <Provider store={store}>
+          <AuthContextProvider>
+            <ErrorBoundary>
+              <App />
+            </ErrorBoundary>
+          </AuthContextProvider>
+        </Provider>
+        </SketchFabContextProvider>
       </MyContextProvider>
     </BrowserRouter>
   </React.StrictMode>
