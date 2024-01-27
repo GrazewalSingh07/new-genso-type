@@ -27,7 +27,7 @@ app.get('/api/item/:slug', (req, res) => {
 app.get('/',(req,res)=>{
     return res.send("Hello! Gensians")
 })
-app.get('/favicon.ico', (req, res) => res.status(204));
+
 function ignoreFavicon(req, res, next) {
     if (req.originalUrl.includes('favicon.ico')) {
       res.status(204).end()
