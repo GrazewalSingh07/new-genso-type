@@ -28,6 +28,13 @@ app.get('/',()=>{
     return res.send("Hello! Gensians")
 })
 app.get('/favicon.ico', (req, res) => res.status(204));
+function ignoreFavicon(req, res, next) {
+    if (req.originalUrl.includes('favicon.ico')) {
+      res.status(204).end()
+    }
+    next();
+  }
+  app.use(ignoreFavicon);
 const sketchfab_login = require('./controller/sketchfab.controller')
 app.use("/sketchfab_login",sketchfab_login)
 
