@@ -4,27 +4,42 @@ const app=express()
 app.use(express.json())
 var cors = require('cors');
 app.use(cors())
-app.use(function(req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    next();
-});
- 
-app.use(ignoreFavicon);
- 
- 
-app.get('/',(req,res)=>{
-    return res.send("Hello! Gensians")
-})
-
-function ignoreFavicon(req, res, next) {
+const whitelist = [
+    '*'
+  ];
+  
+  app.use((req, res, next) => {
+    const origin = req.get('referer');
+    const isWhitelisted = whitelist.find((w) => origin && origin.includes(w));
+    if (isWhitelisted) {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+      res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,Content-Type,Authorization');
+      res.setHeader('Access-Control-Allow-Credentials', true);
+    }
+    // Pass to next layer of middleware
+    if (req.method === 'OPTIONS') res.sendStatus(200);
+    else next();
+  });
+  function ignoreFavicon(req, res, next) {
     if (req.originalUrl.includes('favicon.ico')) {
       res.status(204).end()
     }
     next();
   }
+ 
+app.use(ignoreFavicon);
+const setContext = (req, res, next) => {
+    if (!req.context) req.context = {};
+    next();
+  };
+  app.use(setContext);
+ 
+app.get('/',(req,res)=>{
+    return res.send("Hello! Gensians")
+})
+
+
 
 const sketchfab_login = require('./controller/sketchfab.controller')
 app.use("/sketchfab_login",sketchfab_login)
