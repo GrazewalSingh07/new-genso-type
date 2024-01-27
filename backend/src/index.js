@@ -24,7 +24,7 @@ app.get('/api/item/:slug', (req, res) => {
   const { slug } = req.params;
   res.end(`Item: ${slug}`);
 });
-app.get('/',()=>{
+app.get('/',(req,res)=>{
     return res.send("Hello! Gensians")
 })
 app.get('/favicon.ico', (req, res) => res.status(204));
