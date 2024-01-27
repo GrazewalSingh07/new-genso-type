@@ -2,8 +2,10 @@ const express = require('express')
 
 const app=express()
 app.use(express.json())
+
 var cors = require('cors');
 app.use(cors())
+
 const whitelist = [
     '*'
   ];
@@ -33,7 +35,7 @@ const setContext = (req, res, next) => {
     if (!req.context) req.context = {};
     next();
   };
-  app.use(setContext);
+app.use(setContext);
  
 app.get('/',(req,res)=>{
     return res.send("Hello! Gensians")
