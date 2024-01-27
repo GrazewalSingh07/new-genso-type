@@ -1,3 +1,4 @@
-const app= require('src/index.js')
+import app from "../src";
+
  
 export default app
