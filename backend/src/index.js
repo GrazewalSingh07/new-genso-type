@@ -24,7 +24,9 @@ app.get('/api/item/:slug', (req, res) => {
   const { slug } = req.params;
   res.end(`Item: ${slug}`);
 });
-
+app.get('/',()=>{
+    return res.send("Hello! Gensians")
+})
 const sketchfab_login = require('./controller/sketchfab.controller')
 app.use("/sketchfab_login",sketchfab_login)
 
