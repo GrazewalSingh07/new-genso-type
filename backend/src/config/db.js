@@ -1,6 +1,6 @@
 const mongoose= require("mongoose");
- 
+ const DB = process.env.DB
 module.exports=()=>{
-    return mongoose.connect("mongodb+srv://singhgrazewal2:Grazewal@cluster0.fglisnc.mongodb.net/genso")
+    return mongoose.connect(DB)
 }
  

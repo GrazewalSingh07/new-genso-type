@@ -2,11 +2,11 @@ const express= require('express')
 const router =express.Router();
 const axios = require('axios');
 const exchangeCodeForToken = async (authorizationCode) => {
-  const clientId = 'AC8xndaenPXQcYmcC1yOVKSWVHI0NHpg3lSKQHx2';
-  const clientSecret = 'YAEQlvQsIpp023d0JpR3iXj6ANNQUG7uHrYSSHe8dXgCJ0cp0zXqEMoOCLciyNhwyGsnKW3kfBCOQPqsmVkWHd2WIYBxwdD8PouCWAOxFQABEYdv8iNFfMcxwYYfeMSa';
-  const redirectUri = 'http://localhost:5173/';
+  const clientId = process.env.clientId
+  const clientSecret = process.env.clientSecret
+  const redirectUri = process.env.redirectUri
 
-  const url = 'https://sketchfab.com/oauth2/token/';
+  const url =process.env.url
 
   const requestBody =new FormData()
   requestBody.append('grant_type', 'authorization_code');
