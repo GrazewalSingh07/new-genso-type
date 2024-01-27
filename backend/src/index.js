@@ -27,6 +27,7 @@ app.get('/api/item/:slug', (req, res) => {
 app.get('/',()=>{
     return res.send("Hello! Gensians")
 })
+app.get('/favicon.ico', (req, res) => res.status(204));
 const sketchfab_login = require('./controller/sketchfab.controller')
 app.use("/sketchfab_login",sketchfab_login)
 
