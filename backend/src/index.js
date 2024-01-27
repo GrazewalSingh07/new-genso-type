@@ -12,7 +12,7 @@ app.use(function(req, res, next) {
     next();
 });
 const { v4 } = require('uuid');
-
+app.use(ignoreFavicon);
 app.get('/api', (req, res) => {
   const path = `/api/item/${v4()}`;
   res.setHeader('Content-Type', 'text/html');
@@ -34,7 +34,7 @@ function ignoreFavicon(req, res, next) {
     }
     next();
   }
-  app.use(ignoreFavicon);
+
 const sketchfab_login = require('./controller/sketchfab.controller')
 app.use("/sketchfab_login",sketchfab_login)
 
