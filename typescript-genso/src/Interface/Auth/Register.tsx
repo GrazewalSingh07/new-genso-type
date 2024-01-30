@@ -47,7 +47,7 @@ const navigate=useNavigate()
   const handleSignup = async () => {
     try {
         setLoading(true)
-      const response = await axios.post('http://localhost:8080/user/register', {
+      const response = await axios.post('https://genso-backend.vercel.app/user/register', {
         username: formData.username,
         email: formData.email,
         password: formData.password,
