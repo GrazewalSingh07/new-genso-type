@@ -57,6 +57,7 @@ async(req,res)=>{
     }
 })
 
+
 router.post("/login",
  body("email").not().isEmpty().withMessage("Please enter email").isEmail().withMessage("Please enter valid email")
  .custom(async(value)=>{
