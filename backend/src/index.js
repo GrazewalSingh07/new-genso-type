@@ -10,7 +10,8 @@ const whitelist = [
     '*'
   ];
   
-  app.use((req, res, next) => {
+app.use((req, res, next) => {
+    console.log("first")
     const origin = req.get('referer');
     const isWhitelisted = whitelist.find((w) => origin && origin.includes(w));
     if (isWhitelisted) {
@@ -23,6 +24,7 @@ const whitelist = [
     if (req.method === 'OPTIONS') res.sendStatus(200);
     else next();
   });
+
   function ignoreFavicon(req, res, next) {
     if (req.originalUrl.includes('favicon.ico')) {
       res.status(204).end()
@@ -44,6 +46,8 @@ app.get('/',(req,res)=>{
 
 
 const sketchfab_login = require('./controller/sketchfab.controller')
+const userController = require('./controller/user.controller')
 app.use("/sketchfab_login",sketchfab_login)
+app.use("/user",userController)
 
 module.exports =app

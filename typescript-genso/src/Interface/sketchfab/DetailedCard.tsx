@@ -1,5 +1,7 @@
 import { Button } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
+import { SketchFabContext } from "../../context/SketchFabContext";
+import { TbProgress } from "react-icons/tb";
 
 interface ModelCardProps {
   modelData: {
@@ -36,17 +38,19 @@ interface ModelCardProps {
     };
     embedUrl: string;
     viewerUrl: string;
+    uri:string
   };
 }
 
 const DetailedModelCard: React.FC<ModelCardProps> = ({ modelData }) => {
-  const { name, thumbnails, user, archives, license, viewerUrl } =
-    modelData;
+  const { name, thumbnails, user, archives, license, viewerUrl } = modelData;
   const thumbnailUrl =
     thumbnails.images.length > 0 ? thumbnails.images[0].url : "";
-    function bytesToMB(bytes: number): number {
-        return  +(bytes / (1024 * 1024)).toFixed(2);
-      }
+  function bytesToMB(bytes: number): number {
+    return +(bytes / (1024 * 1024)).toFixed(2);
+  }
+  
+  const {handleImport,downloading}= useContext<any>(SketchFabContext)
   return (
     <div className="flex-col items-left">
       <div className="py-2">
@@ -64,27 +68,47 @@ const DetailedModelCard: React.FC<ModelCardProps> = ({ modelData }) => {
       </p>
 
       <div className="mt-5">
-        <p className="text-gray-500 text-left py-2 text-sm">Model Information</p>
+        <p className="text-gray-500 text-left py-2 text-sm">
+          Model Information
+        </p>
         <div className="flex flex-col w-full">
-  <div className="flex justify-between mb-2">
-    <p className="text-black text-left">GLB Size:</p>
-    <p className="text-black text-right">{bytesToMB(archives.glb.size)} MB</p>
-  </div>
+          <div className="flex justify-between mb-2">
+            <p className="text-black text-left">GLB Size:</p>
+            <p className="text-black text-right">
+              {bytesToMB(archives.glb.size)} MB
+            </p>
+          </div>
 
-  <div className="flex justify-between mb-2">
-    <p className="text-black text-left">Faces:</p>
-    <p className="text-black text-right">{archives.glb.faceCount}</p>
-  </div>
+          <div className="flex justify-between mb-2">
+            <p className="text-black text-left">Faces:</p>
+            <p className="text-black text-right">{archives.glb.faceCount}</p>
+          </div>
 
-  <div className="flex justify-between">
-    <p className="text-black text-left">Vertices:</p>
-    <p className="text-black text-right">{archives.glb.vertexCount}</p>
-  </div>
-</div>
-
+          <div className="flex justify-between">
+            <p className="text-black text-left">Vertices:</p>
+            <p className="text-black text-right">{archives.glb.vertexCount}</p>
+          </div>
+        </div>
       </div>
 
-      <Button
+   {downloading?   <Button
+            
+            fullWidth
+            
+            sx={{
+                background: "rgb(21 94 117)",
+                "&:hover": {
+                  background: "rgb(21 94 117)",
+                },
+                color: "white",
+                width: "100%",
+                mt: 3, mb: 2
+              }}
+              className="text-black"
+          >
+            <TbProgress size={32}/>
+          </Button>:  <Button
+      onClick={()=>handleImport(modelData?.uri,name)}
         sx={{
           background: "rgb(21 94 117)",
           "&:hover": {
@@ -96,7 +120,7 @@ const DetailedModelCard: React.FC<ModelCardProps> = ({ modelData }) => {
         className="text-black"
       >
         Import
-      </Button>
+      </Button>}
 
       <p
         className="text-cyan-800 text-left"

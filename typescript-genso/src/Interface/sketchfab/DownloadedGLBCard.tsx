@@ -29,7 +29,7 @@ const ModelCard: React.FC<ModelCardProps> = ({ modelData,setViewDetails,setCurrD
         setViewDetails(true)
         setCurrData(modelData)
     }} className='cursor-pointer !my-2'  style={{boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px'}}>
-      <img src={thumbnailUrl} alt={name} style={{ width: '100%', height: 'auto' }} />
+      <img src={thumbnailUrl} alt={name} className='m-auto' style={{ width: 'auto',minWidth:"100px", height: 'auto' }} />
       <h2 className='text-black'>{name}</h2>
     </div>
   );

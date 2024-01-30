@@ -44,7 +44,7 @@ const handlePagination=()=>{
   return (
 
    <>
-   {viewDetails==true?<div>
+   {viewDetails==true?<div >
     <div onClick={handleBack} className='flex items-center'>
         <IconButton>
         <IoChevronBack/>
@@ -52,7 +52,7 @@ const handlePagination=()=>{
         <p className='text-cyan-800 font-semibold text-left' >Back to search</p>
     </div>
     <DetailedModelCard modelData={currData}/>
-   </div>: <div  className=' max-h-[90vh] p-4 overflow-scroll 'style={{boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px'}}   >
+   </div>: <div  className='max-h-[85vh] p-4 overflow-scroll 'style={{boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px'}}   >
       <TextField
         placeholder="Search for assets by name"
         fullWidth

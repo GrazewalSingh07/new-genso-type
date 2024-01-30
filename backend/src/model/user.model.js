@@ -4,6 +4,11 @@ const userSchema=new mongoose.Schema({
     username:{type:String, required:false},
     email:{type:String,required:true, unique:true},
     password:{type:String, required:true},
+    access_token:{type:String, required:false, unique:true},
+    expires_in:{type:String, required:false, unique:true},
+    token_type:{type:String, required:false, unique:true},
+    scope: {type:String, required:false, unique:true},
+    refresh_token: {type:String, required:false, unique:true},
    
 
 },{
