@@ -9,6 +9,7 @@ const newToken=(user)=>{
     return jwt.sign({user},process.env.SECRET_KEY)
 }
 
+
 router.post("/register",
 
     body("username").not().isEmpty().withMessage("Please Enter Username"),
