@@ -5,7 +5,7 @@ import axios, { AxiosRequestConfig } from "axios";
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { getLocalStorageData } from "../utils/localStorage";
 import { User } from "./AuthContext";
-import JSZip from 'jszip';
+ 
 import { handleArrayBufferLoad } from "../Redux/ModelInteraction/action";
 import { MyContext } from "../context";
 
@@ -43,7 +43,7 @@ export const SketchFabContextProvider: React.FC<SketchFabProps> = ({ children })
 const [sketchfab_data,setsketchfab_data]= useState<any>(null)
 const [loading,setLoading]= useState<boolean>(false)
 const [downloading,setDownloading]= useState<boolean>(false)
-const [downloadData,setDownloadData]= useState(null)
+const [downloadData,setDownloadData]= useState<any>()
  
 const user:User|null=getLocalStorageData('user')
 const {handleChangeData} =useContext<any>(MyContext)

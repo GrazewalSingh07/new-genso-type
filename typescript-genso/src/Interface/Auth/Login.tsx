@@ -9,8 +9,7 @@ import {
   Avatar,
 } from '@mui/material';
 import { TbProgress } from "react-icons/tb";
- 
-import { MdLockOutline } from 'react-icons/md';
+  
 import axios from 'axios';
 import { setLocalStorageData } from '../../utils/localStorage';
 import { AuthContext } from '../../context/AuthContext';

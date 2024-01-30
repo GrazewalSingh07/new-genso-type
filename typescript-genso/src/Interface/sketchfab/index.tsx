@@ -6,18 +6,18 @@ import { SketchFabParentComponent } from './ModelSection';
 import { AuthContext, User } from '../../context/AuthContext';
 import { getLocalStorageData } from '../../utils/localStorage';
 import { Avatar } from '@mui/material';
-import { MdLockOutline } from 'react-icons/md';
+ 
 import { CgProfile } from 'react-icons/cg';
-import { SketchFabContext } from '../../context/SketchFabContext';
+ 
 
 export const Sketchfab = () => {
   const [externalPopup, setExternalPopup] = useState<Window | null>(null);
   const {setAuthCode} = useContext<any>(AuthContext)
-  const { sketchfab_data, fetchData,setQueryParams,queryParams ,loading} = useContext<any>(SketchFabContext);
+  
 const user:User|null=getLocalStorageData('user')
   const openExternalPopup = () => {
     const newExternalPopup = window.open(
-      'https://sketchfab.com/oauth2/authorize/?response_type=code&client_id=AC8xndaenPXQcYmcC1yOVKSWVHI0NHpg3lSKQHx2&redirect_uri=http://localhost:5173/',
+      'https://sketchfab.com/oauth2/authorize/?response_type=code&client_id=AC8xndaenPXQcYmcC1yOVKSWVHI0NHpg3lSKQHx2&redirect_uri=https://new-genso-type.vercel.app/',
       'sketchfab',
       'height=500,width=700'
     );
@@ -60,9 +60,7 @@ const user:User|null=getLocalStorageData('user')
       externalPopup.focus();
     }
   };
-  const handlePagination=()=>{
-    setQueryParams({...queryParams,cursor:queryParams.cursor+24});
-   }
+  
 
   return (
     <div className='absolute right-0 h-[100vh] w-[250px] text-center  '>
@@ -88,16 +86,7 @@ const user:User|null=getLocalStorageData('user')
           <SketchFabParentComponent />
          
         </div>
-        {/* <Button    onClick={handlePagination} sx={{
-          background: "rgb(21 94 117)",
-          "&:hover": {
-            background: "rgb(21 94 117)",
-          },
-          color: "white",
-          width: "100%",
-        }}  >
-            Load more
-        </Button> */}
+         
       </div>
     </div>
   );

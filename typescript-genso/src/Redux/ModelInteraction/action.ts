@@ -18,14 +18,14 @@ const handleFileLoad = (file: File): Promise<{ name: string; file: THREE.Object3
     }, undefined, reject);
   });
 };
-export const handleArrayBufferLoad = (arrayBuffer: ArrayBuffer,name:string): Promise<THREE.Object3D> => {
+export const handleArrayBufferLoad = (arrayBuffer: ArrayBuffer,name:string): Promise<{ name: string; file: THREE.Object3D ,type:string}> => {
   return new Promise((resolve, reject) => {
     const loader = new GLTFLoader();
-    loader.parse(arrayBuffer, undefined, (gltf) => {
+    loader.parse(arrayBuffer, '', (gltf) => {
       const object3DInstance = new THREE.Object3D();
       object3DInstance.add(gltf.scene);
-      resolve({name:name.split("").join("")+"_"+generateUniqueId(), 'file':object3DInstance ,type:"imported" });
-    }, undefined, reject);
+      resolve({name:name+"_"+generateUniqueId(), 'file':object3DInstance ,type:"imported" });
+    }, reject);
   });
 };
 

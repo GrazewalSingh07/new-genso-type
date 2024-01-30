@@ -1,17 +1,14 @@
  
 import { useState } from "react"
-import {useNavigate} from "react-router-dom"
+ 
  
 import Register from "./Auth/Register"
 import Login from "./Auth/Login"
  
 export const Home = () => {
-  const navigate= useNavigate()
+ 
   const [currState,setcurrState]= useState<string>('login')
-  const handleButtonClick=()=>{
-    
-    navigate("/recents")
-  }
+ 
 
   const handleButton=(name:string)=>{
     if(name=='login'){
