@@ -54,10 +54,10 @@ app.get('/',(req,res)=>{
 
 
 
-const sketchfab_login = require('./controller/sketchfab.controller')
-// const userController = require('./controller/user.controller')
-app.use("/sketchfab_login",sketchfab_login)
-// app.use("/user",userController)
+// const sketchfab_login = require('./controller/sketchfab.controller')
+// // const userController = require('./controller/user.controller')
+// app.use("/sketchfab_login",sketchfab_login)
+// // app.use("/user",userController)
 
  
 const newToken=(user)=>{
@@ -65,7 +65,7 @@ const newToken=(user)=>{
 }
 
 
-router.post("/register",
+app.post("/register",
 
     body("username").not().isEmpty().withMessage("Please Enter Username"),
     
@@ -113,7 +113,7 @@ async(req,res)=>{
 })
 
 
-router.post("/login",
+app.post("/login",
  body("email").not().isEmpty().withMessage("Please enter email").isEmail().withMessage("Please enter valid email")
  .custom(async(value)=>{
     let user= await User.findOne({email:value}).lean().exec()
@@ -191,7 +191,7 @@ try {
 }
    
   };
-  router.post('/', authenticate, async (req, res) => {
+  app.post('/', authenticate, async (req, res) => {
     try {
      
        
