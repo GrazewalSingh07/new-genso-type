@@ -41,7 +41,7 @@ const navigate=useNavigate()
     try {
       setLoading(true)
       setError(null)
-      const response = await axios.post('https://genso-backend.vercel.app/user/login', formData);
+      const response = await axios.post('http://13.233.48.128:8080/user/login', formData);
 
       // Assuming your server sends a success status
       console.log(response)

@@ -42,7 +42,7 @@ if(token) {
 
 
   const sketchfabLogin = async (code: string) => {
-    const url = "https://genso-backend.vercel.app/sketchfab_login";
+    const url = "http://13.233.48.128:8080/sketchfab_login";
     const user: User | null = getLocalStorageData('user');
     axios
       .post(url, JSON.stringify({ code,userId:user?._id }), {
